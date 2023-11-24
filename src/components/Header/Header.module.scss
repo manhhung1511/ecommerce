@@ -1,0 +1,118 @@
+.navbar-full {
+    background-color: var(--text-color6);
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    margin-bottom: 24px;
+    &_left {
+        display: flex;
+        list-style: none;
+        &_item {
+            display: flex;
+            margin-right: 32px;
+            span {
+                margin-right: 8px;
+            }
+            p {
+                margin-left: 8px;
+                color:var(--white)
+            }
+        }
+    }
+    &_right {
+        display: flex;
+        align-items: center;
+        &-item {
+            list-style: none;
+            margin-left: 16px;
+        }
+    }
+}
+
+//header
+
+.header {
+    padding-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_logo {
+        margin-right: 40px;
+    }
+    &_left {
+        display: flex;
+        align-items: center;
+    }
+    &_menu {
+        display: flex;
+        &-list {
+            display: flex;
+            margin-right: 24px;
+            padding: 8px 0;
+        }
+        &-link {
+            color: var(--text-color8);
+            font-family: var(--font-family);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px; 
+            text-decoration: none;
+            
+        }
+        &-link:hover {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+    }
+    &_right {
+        display: flex;
+        align-items: center;
+        &-search {
+            padding: 8px 0;
+            margin-right: 40px;
+            input {
+                padding: 10px 20px;
+                display: flex;
+                width: 267px;   
+                align-items: center;
+                border-radius: 8px;
+                border: 1px solid var(--gray2);
+                outline: none;
+            }
+        }
+        &-list {
+            display: flex;
+        }
+        &-item {
+            list-style: none;
+        }
+        &-item:nth-child(1),
+        &-item:nth-child(2) {
+            margin-right: 16px;
+        }   
+        &-item:nth-child(3) {
+            button {
+                background-color: var(--white);
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                span {
+                    margin-left: 8px;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px; 
+                    color: var(--text-color6);
+                }
+            }
+        }
+    }
+}
+
+// .header_menu-link:hover {
+    
+// }

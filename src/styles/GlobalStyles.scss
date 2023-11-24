@@ -1,0 +1,103 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --font-family: 'Rubik', sans-serif;
+    --primary-color: #081C66 ;
+    --primary3: #3C5094;
+    --text-color3: #CBD5E1;
+    --text-color4: #94A3B8;
+    --text-color5: #64748B;
+    --text-color6: #475569;
+    --text-color7: #334155;
+    --text-color8: #1E293B;
+    --text-color9: #0F172A;
+    --gray2: #E2E8F0;
+    // Warning
+    --warning-light: "";
+    --warning-pale: "";
+    --warning-pastel: "";
+    --warning-medium: #fff700;
+    --warning-deep: "";
+    --warning-dark: "";
+    // Error
+    --error-light: #e4c0c0;
+    --error-pale: #cf7c7c;
+    --error-pastel: #c05656;
+    --error-medium: #c53c3c;
+    --error-deep: #f00;
+    --error-dark: #530909;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  ul, p {
+    padding: 0;
+    margin: 0;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    font-size: 14px;
+    line-height: 1.5;
+    text-rendering: optimizespeed;
+    color: var(--text-color7);
+    max-width: 1920px;
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .wrapper {
+    width: 100%; /* Set the initial width to 100% */
+    max-width: 1920px; /* Set the maximum width to 1920px */
+    margin: 0 auto; /* Center the container horizontally */
+     /* Additional styling for the container */
+  }
+  @media (max-width: 1440px) and (-webkit-min-device-pixel-ratio: 0.75) {
+    .wrapper {
+      max-width: 100%; /* Set the maximum width to 100% for screens smaller than 1440px */
+    }
+  }
+  
+ .container {
+    max-width: 1310px !important;
+    margin: 0 auto;
+    padding: 0 15px;
+ }
+  
+ @media (max-width: 576px) {
+    .container {
+        max-width: 540px !important;
+    }
+ }
+
+ @media (max-width: 1441px) {
+    body {
+      width: 1920px; /* Set a fixed width for screens larger than 1440px */
+    //   overflow: hidden;
+    }
+  }
