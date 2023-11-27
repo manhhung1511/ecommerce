@@ -1,21 +1,74 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
 import { Link } from 'react-router-dom';
+import Overlay from "../Overlay";
+import Login from "../Login";
+import Register from "../Register";
 
 const cx = classNames.bind(styles);
-// import logo from "../../assets/images/branch.svg";
 
 const Header = () => {
-
+    const [scrolled, setScrolled] = useState(false);
+    const infor = JSON.parse(localStorage.getItem("user")) ?? "";
+    const user = infor ? infor.username : "";
     const [inputSearch, setInputSearch] = useState("")
 
-    function hanldeSearch(e) {
+    const [showLogin, setShowLogin] = useState(false);
+    const [showRegister, setShowRegister] = useState(false);
+
+    function handleSearch(e) {
         setInputSearch(e.target.value)
     }
 
+    const handleLogin = () => {
+        setShowRegister(false);
+        setShowLogin(true);
+    }
+
+    const handleLoginClose = () => {
+        setShowLogin(false);
+      };
+
+    const handleRegister = () => {
+        setShowLogin(false);
+        setShowRegister(true);
+    }
+  
+    const handleRegisterClose = () => {
+          setShowRegister(false);
+    };
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+              setScrolled(true);
+            } else {
+              setScrolled(false);
+            }
+          };
+      
+          window.addEventListener('scroll', handleScroll);
+      
+          return () => {
+            window.removeEventListener('scroll', handleScroll);
+          };
+      }, []); // Empty dependency array ensures that the effect runs only once
+    
+ 
+      const style = {
+        overflow: scrolled ? 'hidden' : '',
+        backgroundColor: scrolled ? '#FFF' : '',
+        position: scrolled ? 'fixed' : '',
+        top: scrolled ? '0' : '',
+        width: scrolled ? '100%' : '',
+        zIndex:scrolled ? '999' : '',
+        boxShadow: scrolled ? '0px 6px 24px 0px rgba(86, 86, 86, 0.15)' : ''
+      };
+
     return (
-        <>
+        <div className={cx("header-all")}>
             <div className={cx("navbar-full")}>
                 <div className={cx("container")}>
                     <div className={cx("navbar")}>
@@ -102,85 +155,99 @@ const Header = () => {
                     </div>
                 </div>
              </div>
-            <div className={cx("container")}>
-                <div className={cx("header")}>
-                    <div className={cx("header_left")}>
-                        <div className={cx("header_logo")}>
-                            <img src="./images/Brand.png" alt=""/>
+             <div style={style}>
+                <div className={cx("container")}>
+                    <div className={cx("header")}>
+                        <div className={cx("header_left")}>
+                            <div className={cx("header_logo")}>
+                                <img src="./images/Brand.png" alt=""/>
+                            </div>
+                            <ul className={cx("header_menu")}>
+                                <li className={cx("header_menu-list")}>
+                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                        Trang chủ
+                                    </Link>
+                                </li>
+                                <li className={cx("header_menu-list")}>
+                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                        Sản phẩm
+                                    </Link>
+                                </li>
+                                <li className={cx("header_menu-list")}>
+                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                        Liên hệ
+                                    </Link>
+                                </li>
+                                <li className={cx("header_menu-list")}>
+                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                        Tin tức
+                                    </Link>
+                                </li>
+                                <li className={cx("header_menu-list")}>
+                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                        Giới thiệu
+                                    </Link>
+                                </li> 
+                            </ul>
                         </div>
-                        <ul className={cx("header_menu")}>
-                            <li className={cx("header_menu-list")}>
-                                <Link to={"/"} className={cx("header_menu-link")}>
-                                    Trang chủ
-                                </Link>
-                            </li>
-                            <li className={cx("header_menu-list")}>
-                                <Link to={"/"} className={cx("header_menu-link")}>
-                                    Sản phẩm
-                                </Link>
-                            </li>
-                            <li className={cx("header_menu-list")}>
-                                 <Link to={"/"} className={cx("header_menu-link")}>
-                                    Liên hệ
-                                </Link>
-                            </li>
-                            <li className={cx("header_menu-list")}>
-                                <Link to={"/"} className={cx("header_menu-link")}>
-                                    Tin tức
-                                </Link>
-                            </li>
-                            <li className={cx("header_menu-list")}>
-                                <Link to={"/"} className={cx("header_menu-link")}>
-                                    Giới thiệu
-                                </Link>
-                            </li> 
-                        </ul>
-                    </div>
-                    <div className={cx("header_right")}>
-                        <div className={cx("header_right-search")}>
-                            <input
-                                type="text"
-                                placeholder="Tìm kiếm"
-                                value={inputSearch}
-                                onChange={hanldeSearch}
-                            />
+                        <div className={cx("header_right")}>
+                            <div className={cx("header_right-search")}>
+                                <input
+                                    type="text"
+                                    placeholder="Tìm kiếm"
+                                    value={inputSearch}
+                                    onChange={handleSearch}
+                                />
 
-                         </div>
-                         <ul className={cx("header_right-list")}>
-                            <li className={cx("header_right-item")}>
-                                <Link to={"/"}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9938 5.91615C10.1944 3.81913 7.19377 3.25504 4.93923 5.17528C2.68468 7.09552 2.36727 10.3061 4.13778 12.5771C5.60984 14.4654 10.0648 18.4478 11.5249 19.7368C11.6882 19.881 11.7699 19.9531 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9531 12.2994 19.881 12.4628 19.7368C13.9229 18.4478 18.3778 14.4654 19.8499 12.5771C21.6204 10.3061 21.3417 7.07532 19.0484 5.17528C16.7551 3.27524 13.7933 3.81913 11.9938 5.91615Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </Link>
-                            </li>
-                            <li className={cx("header_right-item")}>
-                                <Link to={"/"}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M3 4H3.60632C4.62694 4 5.48384 4.7685 5.59452 5.78311L6.40548 13.2169C6.51616 14.2315 7.37306 15 8.39368 15H17.046C17.9602 15 18.7581 14.3801 18.984 13.4942L20.3639 8.08311C20.6864 6.81854 19.731 5.58889 18.426 5.58889H6.6M6.62476 18.6249H7.37476M6.62476 19.3749H7.37476M17.6248 18.6249H18.3748M17.6248 19.3749H18.3748M8 19C8 19.5523 7.55229 20 7 20C6.44772 20 6 19.5523 6 19C6 18.4477 6.44772 18 7 18C7.55229 18 8 18.4477 8 19ZM19 19C19 19.5523 18.5523 20 18 20C17.4477 20 17 19.5523 17 19C17 18.4477 17.4477 18 18 18C18.5523 18 19 18.4477 19 19Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg>
-                                </Link>
-                            </li>
-                            <li className={cx("header_right-item")}>
-                                <button type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M12 14C14.7614 14 17 11.7614 17 9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9C7 11.7614 9.23858 14 12 14ZM12 14C7.58172 14 4 16.6863 4 20M12 14C16.4183 14 20 16.6863 20 20" stroke="#081C66" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg>
-                                    <span> Đăng nhập </span>
-                                </button>
-                            </li>
-                         </ul>
+                            </div>
+                            <ul className={cx("header_right-list")}>
+                                <li className={cx("header_right-item")}>
+                                    <Link to={"/"}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9938 5.91615C10.1944 3.81913 7.19377 3.25504 4.93923 5.17528C2.68468 7.09552 2.36727 10.3061 4.13778 12.5771C5.60984 14.4654 10.0648 18.4478 11.5249 19.7368C11.6882 19.881 11.7699 19.9531 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9531 12.2994 19.881 12.4628 19.7368C13.9229 18.4478 18.3778 14.4654 19.8499 12.5771C21.6204 10.3061 21.3417 7.07532 19.0484 5.17528C16.7551 3.27524 13.7933 3.81913 11.9938 5.91615Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </Link>
+                                </li>
+                                <li className={cx("header_right-item")}>
+                                    <Link to={"/cart"}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M3 4H3.60632C4.62694 4 5.48384 4.7685 5.59452 5.78311L6.40548 13.2169C6.51616 14.2315 7.37306 15 8.39368 15H17.046C17.9602 15 18.7581 14.3801 18.984 13.4942L20.3639 8.08311C20.6864 6.81854 19.731 5.58889 18.426 5.58889H6.6M6.62476 18.6249H7.37476M6.62476 19.3749H7.37476M17.6248 18.6249H18.3748M17.6248 19.3749H18.3748M8 19C8 19.5523 7.55229 20 7 20C6.44772 20 6 19.5523 6 19C6 18.4477 6.44772 18 7 18C7.55229 18 8 18.4477 8 19ZM19 19C19 19.5523 18.5523 20 18 20C17.4477 20 17 19.5523 17 19C17 18.4477 17.4477 18 18 18C18.5523 18 19 18.4477 19 19Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </Link>
+                                </li>
+                                <li className={cx("header_right-item")}>
+                                {user ? (
+                                        <Link to="/infor" style={{ textDecoration: 'none', color: '#081C66'}}>{user}</Link>   
+                                        ) : (
+                                        <button type="button" onClick={handleLogin}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M12 14C14.7614 14 17 11.7614 17 9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9C7 11.7614 9.23858 14 12 14ZM12 14C7.58172 14 4 16.6863 4 20M12 14C16.4183 14 20 16.6863 20 20" stroke="#081C66" strokeWidth="1.5" strokeLinecap="round" />
+                                        </svg>
+                                        <span>Đăng nhập</span>
+                                        </button>
+                                    )}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+             </div>
+            {
+                showLogin && (
+                    <Overlay >
+                        <Login onClose={handleLoginClose} onRegister={handleRegister}/>
+                    </Overlay>
+                )
+            }
+            {
+                showRegister && (
+                    <Overlay >
+                        <Register onClose={handleRegisterClose} onLogin={handleLogin}/>
+                    </Overlay>
+                )
+            }
 
-            {/* <div className="container">
-                <div className="row">
-                    <div className="col-sm-6"></div>
-                    <div className="col-sm-6"></div>
-                </div>
-            </div> */}
-        </>
+        </div>
     );
 }
 
