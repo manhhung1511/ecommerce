@@ -1,0 +1,82 @@
+.success {
+    &_main {
+        display: flex;
+    }
+    &_content {
+        width: 500px;
+        margin: auto;
+        padding: 20px;
+        margin-bottom: 80px;
+        margin-top: 60px;
+
+        &-copy {
+            background-color: #FFF;
+            border: none;
+        }
+        &-method {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 ;
+
+        }
+        p {
+            color: var(--neutral-800, #1E293B);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px; 
+        }
+
+        &-title {
+            color: var(--text-color9);
+            font-size: 24px !important;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 32px; 
+            text-align: center;
+            padding: 20px 0;
+            color: var(--neutral-900, #0F172A);
+        }
+
+        &-logo {
+            text-align: center;
+        }
+
+        &-code {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            p {
+                span {
+                    padding: 0 5px;
+                }
+            }
+        }
+
+        &-money {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 ;
+        }
+
+        &-moneySum {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &-submit {
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: var(--White, #FFF);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px; 
+            width: 100%;
+            margin-top: 40px;
+        }
+    }
+}

@@ -85,6 +85,10 @@
     .wrapper {
       max-width: 100%;
     }
+
+    .login_img {
+      max-width: 55%;
+    }
   }
   
  .container {
@@ -117,3 +121,13 @@
         max-width: 540px !important;
     }
  }
+.layout_content {
+    width: 80%;
+    margin-left: 18%;
+}
+
+.active1 {
+  color: #081C66 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}

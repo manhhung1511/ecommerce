@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Login.module.scss";
 import classNames from "classnames/bind";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -38,9 +38,19 @@ const Login = ({onClose, onRegister}) => {
         e.preventDefault();
 
         if (validateForm()) {
-            console.log("submit"+formData.email);
+            localStorage.setItem('user', JSON.stringify(formData)); 
+            onClose();
         } 
     }
+
+    let infor = {
+        name: "Nguyễn Mạnh Hùng",
+        number: "0336662001",
+        province: "Hà Nội",
+        dist: "Đống Đa",
+        address: "14 Trần Quang Diệu",
+    }
+    localStorage.setItem('infor', JSON.stringify(infor));
 
     return (
         <>

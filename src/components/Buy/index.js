@@ -1,13 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Buy.module.scss";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
-import Product from "../ProductNew";
 import Footer from "../Footer";
+import Qrcode from "./Qrcode";
+import Overlay from "../Overlay";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 const Buy = () => {
+
+  const [cart, setToCart] = useState([]);
+  const [infor, setInfor] = useState({
+    name: '',
+    number: ''
+  });
+
+  const navigate = useNavigate();
+
+  const [showQR, setShowQR] = useState(false);
+
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleRadioChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  useEffect(() => {
+    const storedProducts = JSON.parse(localStorage.getItem('addProducts'));
+    setToCart(storedProducts);
+
+    const inforUser = JSON.parse(localStorage.getItem('infor'));
+    setInfor(inforUser);
+  },[])
+
+  let sum = 0;
+  if(cart && cart.length > 0) {
+    cart.forEach((item) => {
+      const number = parseInt(item.price, 10);
+      sum += number;
+    });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(selectedValue == 'payment') {
+        setShowQR(true);
+    } else {
+      navigate('/success')
+    }
+  }
+
   return (
     <div className={cx("buy")}>
       <div className={cx("container")}>
@@ -41,15 +84,16 @@ const Buy = () => {
               <div className={cx("col-sm-8")}>
                     <div className={cx("buy_content-detail")}>
                         <h4 className={cx("buy_content-title")}>
-                            Chi tiết hóa đơn
+                            Thông tin vận chuyển
                         </h4>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className={cx("buy_content-username")}>
                                         <p>Họ và tên</p>
                                         <input 
                                         type="text" 
                                         placeholder="Họ và tên"
                                         name="username"
+                                        value={infor && infor.name}
                                         />  
                             </div>
                             <div className={cx("row")}>
@@ -71,7 +115,7 @@ const Buy = () => {
                                             type="tel" 
                                             placeholder="Số điện thoại"
                                             name="number"
-                                            pattern="[0-9]"
+                                            value={ infor && infor.number}
                                         />  
                                     </div>
                                  </div>
@@ -107,11 +151,21 @@ const Buy = () => {
                                         name="address_detail"
                                         />  
                             </div>
-                            <button className={cx("buy_submit")}>Tiếp tục thanh toán</button>
-                            <div className={cx("buy_note")} >
-                                <input type="checkbox" id="infor" name="vehicle1" value="note"/>
-                                <label for="vehicle1">Lưu thông tin cho lần mua tiếp theo</label>
+                            <h4 className={cx("buy_content-pay-title")}>
+                                Hình thức thanh toán
+                            </h4>
+                            <div className={cx("buy_content-pay")}>
+                                <div className={cx("buy_content-pay-item")}>
+                                    <input type="radio" id="cod" name="fav_language" value="cod" onChange={handleRadioChange}/>
+                                    <label for="cod">COD - Thanh toán khi nhận hàng</label> 
+                                </div>
+                                <div className={cx("buy_content-pay-item")}>
+                                    <input type="radio" id="payment" name="fav_language" value="payment" onChange={handleRadioChange}/>
+                                    <label for="payment">Chuyển khoản liên ngân hàng bằng QR Code</label> 
+                                </div>
                             </div>
+
+                            <button className={cx("buy_submit")}>Thanh toán - (đổi trả 30 ngày)</button>
                         </form>
                     </div>
               </div>
@@ -122,52 +176,56 @@ const Buy = () => {
                         Tóm tắt đơn hàng
                         </h4>
                     </div>
-                    {/* <form>
-                        <div className={cx("summary_voucher")}>
-                                    <p>Voucher</p>
-                                    <input 
-                                    type="text" 
-                                    placeholder="Nhập mã"
-                                    name="voucher"
-                                    />  
-                        </div>
-                        <div className={cx("summary_price")}>
-                            <p>
-                                Giá
-                            </p>
-                            <div className={cx("summary_price-text")}>
-                            270.000đ
+                    {
+                      cart && cart.length > 0 ? (
+                        cart.map((item) => (
+                          <div className={cx("summary_item")}>
+                            <div className={cx("summary_item-product")}>
+                                <img src="./images/image25.png" alt=""/>
+                                <div className={cx("summary_item-infor")}>
+                                    <p>{item.name} x 1</p>
+                                    <p>Màu sắc : Đen</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className={cx("summary_price")}>
-                            <p>
-                            Khuyến mãi
-                            </p>
-                            <div className={cx("summary_price-text")}>
-                            -50.000đ
+                            <div className={cx("summary_item-price")}>
+                                {item.price}đ
                             </div>
+                          </div>
+                        ))
+                    
+                      ) : (
+                        <div>
                         </div>
-                        <div className={cx("summary_price")}>
-                            <p>
-                            Tổng tiền
-                            </p>
-                            <div className={cx("summary_price-text")}>
-                            220.000đ
-                            </div>
-                        </div>
-                        <div className={cx("summary_comment")}>
-                                    <p>Ghi chú</p>
-                                    <textarea rows="4" cols="50" placeholder="Ghi chú">
-                                    </textarea>      
-                        </div>
-                        <button className={cx("summary_submit")}>Gửi</button>
-                    </form> */}
+                      )
+                    }
+                    <div className={cx("summary_price")}>
+                          <p>Tổng hàng </p>
+                          <p>{sum}.000đ</p>
+                    </div>
+                    <div className={cx("summary_price")}>
+                          <p>Khuyến mãi</p>
+                          <p>-50.000đ</p>
+                    </div>
+                    <div className={cx("summary_price")}>
+                          <p>Vận chuyển</p>
+                          <p>-20.000đ</p>
+                    </div>
+                    <div className={cx("summary_price-bold")}>
+                          <p>Tổng tiền</p>
+                          <p>{sum - 70.000}.000đ</p>
+                    </div>
                   </div>
               </div>
             </div>
           </div>
         </div>
         <Footer />
+
+        {showQR && (
+          <Overlay>
+              <Qrcode onData={`${sum - 70}.000 đ`} />
+          </Overlay>
+        )}
       </div>
   );
 };

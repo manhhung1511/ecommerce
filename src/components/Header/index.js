@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Overlay from "../Overlay";
 import Login from "../Login";
 import Register from "../Register";
@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const infor = JSON.parse(localStorage.getItem("user")) ?? "";
-    const user = infor ? infor.username : "";
+    const user = infor ? infor.email : "";
     const [inputSearch, setInputSearch] = useState("")
 
     const [showLogin, setShowLogin] = useState(false);
@@ -39,33 +39,57 @@ const Header = () => {
           setShowRegister(false);
     };
 
+    const [activeCategory, setActiveCategory] = useState(null);
+    let location = useLocation();
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-              setScrolled(true);
-            } else {
-              setScrolled(false);
-            }
-          };
+        switch(location.pathname) {
+            case '/': 
+                setActiveCategory(1);
+                break;
+            case '/products': 
+                setActiveCategory(2);
+                break;
+            case '/contact': 
+                setActiveCategory(3);
+                break;
+            case '/news': 
+                setActiveCategory(4);
+                break;
+            case '/introduce':
+                setActiveCategory(5);
+                break;
+            default:
+                setActiveCategory(0);
+        }
+    }, [location.pathname])
+
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         if (window.scrollY > 50) {
+    //           setScrolled(true);
+    //         } else {
+    //           setScrolled(false);
+    //         }
+    //       };
       
-          window.addEventListener('scroll', handleScroll);
+    //       window.addEventListener('scroll', handleScroll);
       
-          return () => {
-            window.removeEventListener('scroll', handleScroll);
-          };
-      }, []); // Empty dependency array ensures that the effect runs only once
+    //       return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //       };
+    //   }, []); // Empty dependency array ensures that the effect runs only once
     
  
-      const style = {
-        overflow: scrolled ? 'hidden' : '',
-        backgroundColor: scrolled ? '#FFF' : '',
-        position: scrolled ? 'fixed' : '',
-        top: scrolled ? '0' : '',
-        width: scrolled ? '100%' : '',
-        zIndex:scrolled ? '999' : '',
-        boxShadow: scrolled ? '0px 6px 24px 0px rgba(86, 86, 86, 0.15)' : ''
-      };
+    //   const style = {
+    //     overflow: scrolled ? 'hidden' : '',
+    //     backgroundColor: scrolled ? '#FFF' : '',
+    //     position: scrolled ? 'fixed' : '',
+    //     top: scrolled ? '0' : '',
+    //     width: scrolled ? '100%' : '',
+    //     zIndex:scrolled ? '999' : '',
+    //     boxShadow: scrolled ? '0px 6px 24px 0px rgba(86, 86, 86, 0.15)' : ''
+    //   };
 
     return (
         <div className={cx("header-all")}>
@@ -155,7 +179,7 @@ const Header = () => {
                     </div>
                 </div>
              </div>
-             <div style={style}>
+             <div>
                 <div className={cx("container")}>
                     <div className={cx("header")}>
                         <div className={cx("header_left")}>
@@ -164,27 +188,37 @@ const Header = () => {
                             </div>
                             <ul className={cx("header_menu")}>
                                 <li className={cx("header_menu-list")}>
-                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                    <Link to={"/"} className={cx("header_menu-link",{
+                                        'active1': 1 === activeCategory,
+                                        })}>
                                         Trang chủ
                                     </Link>
                                 </li>
                                 <li className={cx("header_menu-list")}>
-                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                    <Link to={"/products"} className={cx("header_menu-link", {
+                                        'active1': 2 === activeCategory,
+                                        })}>
                                         Sản phẩm
                                     </Link>
                                 </li>
                                 <li className={cx("header_menu-list")}>
-                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                    <Link to={"/contact"} className={cx("header_menu-link",{
+                                        'active1': 3 === activeCategory,
+                                        })}>
                                         Liên hệ
                                     </Link>
                                 </li>
                                 <li className={cx("header_menu-list")}>
-                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                    <Link to={"/news"} className={cx("header_menu-link",{
+                                        'active1': 4 === activeCategory,
+                                        })}>
                                         Tin tức
                                     </Link>
                                 </li>
                                 <li className={cx("header_menu-list")}>
-                                    <Link to={"/"} className={cx("header_menu-link")}>
+                                    <Link to={"/introduce"} className={cx("header_menu-link", {
+                                        'active1': 5 === activeCategory,
+                                        })}>
                                         Giới thiệu
                                     </Link>
                                 </li> 
@@ -202,7 +236,7 @@ const Header = () => {
                             </div>
                             <ul className={cx("header_right-list")}>
                                 <li className={cx("header_right-item")}>
-                                    <Link to={"/"}>
+                                    <Link to={"/like"}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9938 5.91615C10.1944 3.81913 7.19377 3.25504 4.93923 5.17528C2.68468 7.09552 2.36727 10.3061 4.13778 12.5771C5.60984 14.4654 10.0648 18.4478 11.5249 19.7368C11.6882 19.881 11.7699 19.9531 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9531 12.2994 19.881 12.4628 19.7368C13.9229 18.4478 18.3778 14.4654 19.8499 12.5771C21.6204 10.3061 21.3417 7.07532 19.0484 5.17528C16.7551 3.27524 13.7933 3.81913 11.9938 5.91615Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>

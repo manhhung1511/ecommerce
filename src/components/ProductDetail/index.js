@@ -1,22 +1,60 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import styles from "./ProductDetail.module.scss";
 import classNames from "classnames/bind";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Product from "../ProductNew";
 import Footer from "../Footer";
 import Cart from "./Cart";
 import Overlay from "../Overlay";
+import products from "../../data/product.json";
 
 const cx = classNames.bind(styles);
 
 const ProductDetail = () => {
         const [isCart, setCart] = useState(false);
+        const [cart, setToCart] = useState([]);
+
         const handleCart = () => {
             setCart(true);
         }
         const handleCloseCart = () => {
             setCart(false);
         }
+
+        const { itemId } = useParams();
+
+        useEffect(() => {
+            const storedLikedProducts = JSON.parse(localStorage.getItem('addProducts'));
+            setToCart(storedLikedProducts);
+        },[])
+
+        const handleAddToCart = (product) => {
+            if(cart && cart.length > 0) {
+                const check = cart.some(obj => obj.id == product.id);
+                if (!check) {
+                    const updatedProducts = [...cart, product];
+                    setToCart(updatedProducts);
+                     // Update the localStorage with the new liked products
+                    localStorage.setItem('addProducts', JSON.stringify(updatedProducts));
+                } else {
+                    const newProduct = cart.filter(item => item !== product);
+                    setToCart(newProduct);
+                    localStorage.setItem('addProducts', JSON.stringify(newProduct));
+                }
+            } else {
+                const updatedProducts = [product];
+                setToCart(updatedProducts);
+                 // Update the localStorage with the new liked products
+                localStorage.setItem('addProducts', JSON.stringify(updatedProducts));
+            }
+            
+        }
+
+        const handleCartAndAddToCart = (item) => {
+            handleAddToCart(item);
+            handleCart();
+        }
+        
     return (
         <div className={cx("detail")}>
             <div className={cx("container")}>
@@ -39,30 +77,36 @@ const ProductDetail = () => {
             <div className={cx("detail_content")}>
                 <div className={cx("container")}>
                     <div className={cx("row")}>
-                        <div className={cx("col-sm-1")}>
+                    {
+                        products.map((item, index) => {
+                            if(item.id == itemId) {
+                                return (
+                                    <>
+
+                            <div className={cx("col-sm-1")}>
                             <div className={cx("detail_content-mockup")}>
                                 <div>
-                                     <img src="./images/image 24.png" alt=""/>
+                                     <img src={item.image1} alt=""/>
                                 </div>
                                 <div className={cx("detail_content-mockup-item")}>
-                                    <img src="./images/image 28.png" alt=""/>
+                                    <img src={item.image2} alt=""/>
                                 </div>
                                 <div className={cx("detail_content-mockup-item")}>
-                                     <img src="./images/image 26.png" alt=""/>
+                                     <img src={item.image3} alt=""/>
                                 </div>
                                 <div className={cx("detail_content-mockup-item")}>
-                                    <img src="./images/image 27.png" alt=""/>
+                                    <img src={item.image4} alt=""/>
                                 </div>
                             </div>
                         </div>
                         <div className={cx("col-sm-5")}>
                             <div className={cx("detail_content-image")}>
-                                 <img src="./images/prodcut1.png" alt=""/>
+                                 <img style={{width: "100%", height:"100%"}} src={item.image5} alt=""/>
                             </div>
                         </div>
                         <div className={cx("col-sm-6")}>
                             <div className={cx("detail_content-right")}>
-                                <h3>Áo thun thể thao</h3> 
+                                <h3>{item.name}</h3> 
                                 <p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                         <path d="M7.52447 1.46352C7.67415 1.00287 8.32585 1.00287 8.47553 1.46353L9.68386 5.18237C9.75079 5.38838 9.94277 5.52786 10.1594 5.52786H14.0696C14.554 5.52786 14.7554 6.14767 14.3635 6.43237L11.2001 8.73075C11.0248 8.85807 10.9515 9.08375 11.0184 9.28976L12.2268 13.0086C12.3764 13.4693 11.8492 13.8523 11.4573 13.5676L8.29389 11.2693C8.11865 11.1419 7.88135 11.1419 7.70611 11.2693L4.54267 13.5676C4.15081 13.8523 3.62357 13.4693 3.77325 13.0086L4.98157 9.28976C5.04851 9.08375 4.97518 8.85807 4.79994 8.73075L1.6365 6.43237C1.24464 6.14767 1.44603 5.52786 1.93039 5.52786H5.84062C6.05723 5.52786 6.24921 5.38838 6.31614 5.18237L7.52447 1.46352Z" fill="#F1D02C"/>
@@ -82,8 +126,8 @@ const ProductDetail = () => {
                                     <span>520 reviews</span>
                                 </p>
                                 <div className={cx("detail_content-right-price")}>
-                                    439.120đ
-                                    <span>499.000đ</span>
+                                    {item.price}
+                                    <span> {item.price_sales} </span>
                                 </div>
                                 <div className={cx("detail_content-right-attr")}>
                                     Màu sắc:
@@ -162,7 +206,7 @@ const ProductDetail = () => {
                                     </div>
                                 </div>
                                     <div className={cx("detail_content-right-buy")}>
-                                        <button type="button" className={cx("detail_content-right-buy-cart")} onClick={handleCart}>
+                                        <button type="button" className={cx("detail_content-right-buy-cart")} onClick={() => handleCartAndAddToCart(item)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                             <path d="M2.5 3.33325H3.00526C3.85578 3.33325 4.56986 3.97367 4.6621 4.81917L5.3379 11.014C5.43014 11.8595 6.14422 12.4999 6.99474 12.4999H14.205C14.9669 12.4999 15.6317 11.9833 15.82 11.2451L16.9699 6.73584C17.2387 5.68204 16.4425 4.65733 15.355 4.65733H5.5M5.52063 15.5207H6.14563M5.52063 16.1457H6.14563M14.6873 15.5207H15.3123M14.6873 16.1457H15.3123M6.66667 15.8333C6.66667 16.2935 6.29357 16.6666 5.83333 16.6666C5.3731 16.6666 5 16.2935 5 15.8333C5 15.373 5.3731 14.9999 5.83333 14.9999C6.29357 14.9999 6.66667 15.373 6.66667 15.8333ZM15.8333 15.8333C15.8333 16.2935 15.4602 16.6666 15 16.6666C14.5398 16.6666 14.1667 16.2935 14.1667 15.8333C14.1667 15.373 14.5398 14.9999 15 14.9999C15.4602 14.9999 15.8333 15.373 15.8333 15.8333Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round"/>
                                             </svg>
@@ -204,8 +248,14 @@ const ProductDetail = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>  
-                        </div>
+                        </div> 
+                            </>
+                                )
+                            }
+                    })
+                    }
+                       
+                    </div>
                 </div>
             </div>
             <div className={cx("container")}>
@@ -218,10 +268,17 @@ const ProductDetail = () => {
                         <div className={cx("row")}>
                             <div className={cx("col-sm-7")}>
                                 <h4>MÔ TẢ</h4>
-                                <p>
-                                Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình.
-                                Chiếc áo phông đen trơn giống như một tấm vải trống. Đó là bức tranh hoàn hảo để thể hiện phong cách cá nhân của bạn. Cho dù bạn muốn mặc nó với áo blazer hay mặc cùng quần jean, áo phông đen trơn luôn là một lựa chọn tốt.
-                                </p>
+                                {
+                                    products.map((item, index) => {
+                                    if(item.id == itemId) {
+                                        return (
+                                            <>
+                                                <p>{item.description}</p>
+                                            </>
+                                        )
+                                    }
+                                    })
+                                }
                             </div> 
                             <div className={cx("col-sm-5")}>
                                 <h4>TÍNH NĂNG</h4>
@@ -401,7 +458,7 @@ const ProductDetail = () => {
 
             {isCart && (
                 <Overlay >
-                    <Cart onClose={handleCloseCart}/> 
+                    <Cart onClose={handleCloseCart} itemId={itemId}/> 
                 </Overlay>
             )}
               

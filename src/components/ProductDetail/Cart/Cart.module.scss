@@ -84,29 +84,37 @@
         &-button {
             display: flex;
             justify-content: space-between;
-            button:first-child {
-                padding: 12px 20px;
-                border-radius: 8px;
-                border: 1px solid var(--text-color4);
-                color: var(--primary-color);
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 24px; 
-                width: 49%;
+            a {
+                width: 48%;
             }
+        }
 
-            button:last-child {
-                padding: 12px 20px;
-                border-radius: 8px;
-                background: var(--primary-color);
-                color: var(--generic-white, #FFF);
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 24px; 
-                width: 49%;
-            }
+        &-button1 {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--text-color4);
+            color: var(--primary-color);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px; 
+            width: 100%;
+            border: none;
+            outline: none;
+        }
+
+        &-button2 {
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: var(--generic-white, #FFF);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px; 
+            width: 100%;
+            border: none;
+            outline: none;
         }
     }
 }

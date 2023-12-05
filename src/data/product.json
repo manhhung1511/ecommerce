@@ -1,0 +1,53 @@
+[
+    {
+        "id": "547",
+        "name": "Áo thun trơn đen",
+        "price": "300.000",
+        "img": "https://i.postimg.cc/F1X5pYz3/product1.png",
+        "price_sales": "499.000",
+        "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "1",
+        "number": 20,
+        "image1":"https://i.postimg.cc/j5RDgjwV/image-27.png",
+        "image2":"https://i.postimg.cc/j5RDgjwV/image-27.png",
+        "image3":"https://i.postimg.cc/j5RDgjwV/image-27.png",
+        "image4":"https://i.postimg.cc/j5RDgjwV/image-27.png",
+        "image5":"https://i.postimg.cc/DwCpyWh6/detail1.png"
+    },
+    {
+        "id": "548",
+        "name": "Men’ Jeans",
+        "price": "400.000",
+        "img": "https://i.postimg.cc/gksNNwxp/product2.png",
+        "price_sales": "499.000",
+        "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "2",
+        "number": 40,
+        "image5":"https://i.postimg.cc/gksNNwxp/product2.png"
+
+    },
+    {
+        "id": "549",
+        "name": "Quần bò lửng",
+        "price": "500.000",
+        "img": "https://i.postimg.cc/jjpXLPFH/product3.png",
+        "price_sales": "499.000",
+        "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "1",
+        "number": 30,
+        "image5":"https://i.postimg.cc/jjpXLPFH/product3.png"
+
+    },
+    {
+        "id": "550",
+        "name": "Áo thun trơn đen",
+        "price": "350.000",
+        "img": "https://i.postimg.cc/MTrz7Z1m/product4.png",
+        "price_sales": "499.000",
+        "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "2",
+        "number": 60,
+        "image5":"https://i.postimg.cc/MTrz7Z1m/product4.png"
+
+    }
+]

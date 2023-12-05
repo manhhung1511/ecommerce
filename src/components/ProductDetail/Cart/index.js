@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./Cart.module.scss";
 import classNames from "classnames/bind";
 import { Link } from 'react-router-dom';
+import products from "../../../data/product.json";
 
 
 const cx = classNames.bind(styles);
 
-const Cart = ({onClose}) => {
+const Cart = ({onClose, itemId}) => {
+    const product = products.filter((item) => item.id == itemId)
     return (
         <div className={cx("cart")}>
             <div className={cx("cart_content")}>
@@ -15,12 +17,11 @@ const Cart = ({onClose}) => {
                     <h4>Thêm vào giỏ hàng</h4>
                 </div>
                 <div className={cx("cart_content-bottom")}>
-                    <img src="./images/Photo Product.png" alt=""/>
+                    <img style={{height:"122px"}} src={product[0].img} alt=""/>
                   
                
                     <div className={cx("cart_content-right")}>
-                        <p>Áo thể thao</p>
-                        <h4>Áo thun thể thao</h4>
+                        <h4>{product[0].name}</h4>
                          <div className={cx("cart_content-right-child")}>
                             <div className={cx("cart_content-right1")}>
                                 <button type="button">-</button>
@@ -28,7 +29,7 @@ const Cart = ({onClose}) => {
                                 <button type="button">+</button>
                             </div>
                             <div className={cx("cart_content-right2")}>
-                                <p>130.000đ</p>
+                                <p>{product[0].price} đ</p>
                             </div>
                         </div>
                     </div>
@@ -39,14 +40,18 @@ const Cart = ({onClose}) => {
                         <p>Tạm tính</p>
                     </div>
                     <div className={cx("cart_content-bill2")}>
-                        <p>130.000đ</p>
+                        <p>{product[0].price} đ</p>
                     </div>
                 </div>
                 <p className={cx("cart_content-desc")}>Thuế và phí vận chuyển sẽ được tính khi thanh toán</p>
 
                 <div className={cx("cart_content-button")}>
-                    <button type="button">Xem giỏ hàng</button>
-                    <button type="button">Mua ngay</button>
+                    <Link to="/cart">
+                        <button className={cx("cart_content-button1")} type="button">Xem giỏ hàng</button>
+                    </Link>
+                    <Link to="/cart/buy">
+                        <button className={cx("cart_content-button2")} type="button">Mua ngay</button>
+                    </Link>
                 </div>
             </div>
             <button className={cx("button_off")} onClick={onClose}>

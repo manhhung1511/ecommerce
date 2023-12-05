@@ -73,10 +73,13 @@
         right: 8%;
         border-radius: 40px;
         padding: 16px;
-        p {
+        button {
             position: absolute;
             top: 4px;
             left: 5.5px;
+            background: #FFF;
+            outline: none;
+            border: none;
         }
     }
 }

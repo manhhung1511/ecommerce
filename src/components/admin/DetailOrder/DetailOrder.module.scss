@@ -1,0 +1,177 @@
+.detail {
+    &_main {
+        margin-top: 40px;
+    }
+    &_title {
+        color: var(--neutral-900, #0F172A);
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 38px; 
+    }
+    &_review {
+        border-radius: 8px;
+        background: var(--primary-1, #081C66);
+        color: var(--White, #FFF);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+        padding: 12px 14px;
+        span:first-child {
+            margin-right: 4px;
+        }
+    }
+    &_printf {
+        padding: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--neutral-400, #94A3B8);
+        margin-right: 24px;
+        span {
+            margin-left: 4px;
+            color: var(--primary-1, #081C66);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px; /* 150% */
+        }
+    } 
+    &_summary {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+        align-items: center;
+        &-item {
+            display: flex;
+            justify-content: end;
+            margin-bottom: 16px;
+        }
+        &-money {
+            color: var(--neutral-900, #0F172A);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; 
+            margin-left: 150px;
+        }
+        &-money1 {
+            color: var(--neutral-900, #0F172A);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; 
+            margin-left: 125px;
+        }
+        &-money2 {
+            color: var(--neutral-900, #0F172A);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; 
+            margin-left: 122px;
+        }
+    }
+    &_bold {
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    &_main {
+
+    }
+
+    &_order {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 21px;
+        &-left {
+            display: flex;
+        }
+        &-name {
+            margin-left: 16px;
+            h4 {
+                color: var(--neutral-900, #0F172A);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px; 
+            }
+            p {
+                color: var(--neutral-500, #64748B);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px; 
+            }
+        }
+        &-right {
+            p {
+                color: var(--neutral-900, #0F172A);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+                span {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+    &_summary {
+        &-item {
+
+        }
+        &-child {
+            text-align: right;
+        }
+    }
+}
+
+.customer {
+    h4 {
+        color: var(--neutral-900, #0F172A);
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 26px; 
+    }
+    &_item {
+        margin-bottom: 28px;
+        &-his {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            button {
+                background: #FFF;
+                border: none;
+            }
+        }
+        &-history {
+            display: flex;
+            align-items: center;
+            h4 {
+                color: var(--neutral-900, #0F172A);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px; 
+                margin-bottom: 0px;
+            }
+            span {
+                margin-right: 10px;
+            }
+        }
+        h4 {
+            color: var(--neutral-900, #0F172A);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 20px; 
+            margin-bottom: 16px;
+        }
+        p {
+            margin-bottom: 16px;
+        }
+    }
+}

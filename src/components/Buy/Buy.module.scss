@@ -31,9 +31,7 @@
             line-height: 38px; 
             margin-bottom: 40px;
         }
-        &-detail {
-
-        }
+      
         &-title {
             margin-bottom: 32px;
         }
@@ -48,7 +46,7 @@
             input {
                 width: 100%;
                 padding: 10px 12px;
-                color: var(--text-color4);
+                color: var(--text-color6);
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -73,7 +71,7 @@
             input {
                 width: 100%;
                 padding: 10px 12px;
-                color: var(--text-color4);
+                color: var(--text-color6);
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -98,7 +96,7 @@
             input {
                 width: 100%;
                 padding: 10px 12px;
-                color: var(--text-color4);
+                color: var(--text-color6);
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -111,9 +109,38 @@
                 box-shadow: 0px 1px 2px 0px rgba(15, 23, 42, 0.06);
             }
         }
+        &-pay {
+            &-title {
+                margin-top: 30px;
+            }
+            input {
+                width: 4%;
+                height: 18px;
+                box-shadow: none;
+            }
+            &-item {
+                width: 100%;
+                width: 100%;
+                text-align: left;
+                display: flex;
+                padding: 20px 0;
+                background-color: #FFF;
+                box-shadow: 0px 1px 2px 0px rgba(15, 23, 42, 0.06);
+                border: none;
+                outline: none;
+            }
+            label {
+                color: var(--text-color7);
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+            }
+        }
     }
     &_submit {
-        margin-top: 32px;
+        width: 100%;
+        margin-top: 34px;
         border-radius: 8px;
         background: var(--primary-color);
         height: 48px;
@@ -124,14 +151,6 @@
         font-weight: 500;
         line-height: 24px; 
     }
-    &_note {
-        margin-top: 24px;
-        color: var(--text-color5);
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px; /* 150% */
-    }
 }
 
 input[type="checkbox"] {
@@ -139,9 +158,81 @@ input[type="checkbox"] {
 }
 
 .summary {
+    margin-left: 40px;
+
     &_title {
         h4 {
             margin-top: 35px;
+            margin-bottom: 40px;
+        }
+    }
+    &_item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid var(--text-color4);
+        &-infor {
+            color: var(--text-color7);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; 
+            margin-left: 8px;
+            p:last-child {
+                color: var(--text-color7);
+                font-family: Rubik;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px; /* 142.857% */
+            }
+        }
+        &-product {
+            display: flex;
+        }
+
+        &-price {
+            color: var(--text-color5);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 142.857% */
+        }
+    }
+    &_price {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+        p:first-child {
+            color: var(--text-color6);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 26px;
+        }
+        p:last-child {
+            color: var(--text-color6);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 26px; 
+        }
+        &-bold {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-color7);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 26px; 
+            p:last-child {
+                color: var(--primary-color);
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 26px; 
+            }
         }
     }
 }
