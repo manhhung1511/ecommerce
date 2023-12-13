@@ -10,7 +10,7 @@
     &_sum {
         border-radius: 4px 0px 0px 4px;
         background: var(--primary-1, #081C66);
-        padding: 24px 110px 30px 24px;
+        padding: 24px 42px 30px 24px;
         &-title {
             color: var(--fill-white-white, #FFF);
             font-size: 14px;
@@ -29,7 +29,7 @@
         }
     }
     &_order {
-        padding: 24px 208px 30px 24px;
+        padding: 24px 125px 30px 24px;
         border-right: 1px solid var(--color-text-1-b-5, #F4F4F4);
         &-title {
             color: var(--primary-1-b-1-b-1-b, #1B1B1B);
@@ -69,8 +69,9 @@
             font-size: 14px;
             font-style: normal;
             line-height: 20px; 
+            font-weight: 600;
             p {
-                font-weight: 600;
+                font-weight: 400;
             }
         }
         &-all {

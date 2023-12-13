@@ -9,13 +9,26 @@ import Register from "../Register";
 const cx = classNames.bind(styles);
 
 const Header = () => {
-    const [scrolled, setScrolled] = useState(false);
+    // const [scrolled, setScrolled] = useState(false);
     const infor = JSON.parse(localStorage.getItem("user")) ?? "";
-    const user = infor ? infor.email : "";
+    const user = infor ? infor.username : "";
     const [inputSearch, setInputSearch] = useState("")
 
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
+
+    const [cart, setToCart] = useState([]);
+
+    useEffect(() => {
+        const storedProducts = JSON.parse(localStorage.getItem('addProducts'));
+        setToCart(storedProducts);
+    },[])
+
+
+    window.addEventListener('storage', () => {
+        const storedProducts = JSON.parse(localStorage.getItem('addProducts'));
+        setToCart(storedProducts);
+    })
 
     function handleSearch(e) {
         setInputSearch(e.target.value)
@@ -179,12 +192,15 @@ const Header = () => {
                     </div>
                 </div>
              </div>
-             <div>
+             <div className={cx("header_main")}>
+             {/* <div style={style}> */}
                 <div className={cx("container")}>
                     <div className={cx("header")}>
                         <div className={cx("header_left")}>
                             <div className={cx("header_logo")}>
-                                <img src="./images/Brand.png" alt=""/>
+                                <Link to="/">
+                                    <img src="./images/Brand.png" alt=""/>
+                                </Link>
                             </div>
                             <ul className={cx("header_menu")}>
                                 <li className={cx("header_menu-list")}>
@@ -238,16 +254,28 @@ const Header = () => {
                                 <li className={cx("header_right-item")}>
                                     <Link to={"/like"}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9938 5.91615C10.1944 3.81913 7.19377 3.25504 4.93923 5.17528C2.68468 7.09552 2.36727 10.3061 4.13778 12.5771C5.60984 14.4654 10.0648 18.4478 11.5249 19.7368C11.6882 19.881 11.7699 19.9531 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9531 12.2994 19.881 12.4628 19.7368C13.9229 18.4478 18.3778 14.4654 19.8499 12.5771C21.6204 10.3061 21.3417 7.07532 19.0484 5.17528C16.7551 3.27524 13.7933 3.81913 11.9938 5.91615Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M11.9938 5.91615C10.1944 3.81913 7.19377 3.25504 4.93923 5.17528C2.68468 7.09552 2.36727 10.3061 4.13778 12.5771C5.60984 14.4654 10.0648 18.4478 11.5249 19.7368C11.6882 19.881 11.7699 19.9531 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9531 12.2994 19.881 12.4628 19.7368C13.9229 18.4478 18.3778 14.4654 19.8499 12.5771C21.6204 10.3061 21.3417 7.07532 19.0484 5.17528C16.7551 3.27524 13.7933 3.81913 11.9938 5.91615Z" stroke="#081C66" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                     </Link>
                                 </li>
                                 <li className={cx("header_right-item")}>
-                                    <Link to={"/cart"}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path d="M3 4H3.60632C4.62694 4 5.48384 4.7685 5.59452 5.78311L6.40548 13.2169C6.51616 14.2315 7.37306 15 8.39368 15H17.046C17.9602 15 18.7581 14.3801 18.984 13.4942L20.3639 8.08311C20.6864 6.81854 19.731 5.58889 18.426 5.58889H6.6M6.62476 18.6249H7.37476M6.62476 19.3749H7.37476M17.6248 18.6249H18.3748M17.6248 19.3749H18.3748M8 19C8 19.5523 7.55229 20 7 20C6.44772 20 6 19.5523 6 19C6 18.4477 6.44772 18 7 18C7.55229 18 8 18.4477 8 19ZM19 19C19 19.5523 18.5523 20 18 20C17.4477 20 17 19.5523 17 19C17 18.4477 17.4477 18 18 18C18.5523 18 19 18.4477 19 19Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round"/>
-                                        </svg>
-                                    </Link>
+                                    <div className={cx("cart_list")}>
+                                        <Link to={"/cart"}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M3 4H3.60632C4.62694 4 5.48384 4.7685 5.59452 5.78311L6.40548 13.2169C6.51616 14.2315 7.37306 15 8.39368 15H17.046C17.9602 15 18.7581 14.3801 18.984 13.4942L20.3639 8.08311C20.6864 6.81854 19.731 5.58889 18.426 5.58889H6.6M6.62476 18.6249H7.37476M6.62476 19.3749H7.37476M17.6248 18.6249H18.3748M17.6248 19.3749H18.3748M8 19C8 19.5523 7.55229 20 7 20C6.44772 20 6 19.5523 6 19C6 18.4477 6.44772 18 7 18C7.55229 18 8 18.4477 8 19ZM19 19C19 19.5523 18.5523 20 18 20C17.4477 20 17 19.5523 17 19C17 18.4477 17.4477 18 18 18C18.5523 18 19 18.4477 19 19Z" stroke="#081C66" strokeWidth="1.5" strokeLinecap="round"/>
+                                            </svg>
+                                        </Link>
+                                        {
+                                            (cart == null || cart.length === 0) ? (
+                                                <div> </div>
+                                            ) : (
+                                                <div className={cx("cart_item")}>
+                                                     <p>{cart && cart.length}</p>
+                                                </div>
+                                            )
+                                        }
+                                       
+                                    </div>
                                 </li>
                                 <li className={cx("header_right-item")}>
                                 {user ? (
@@ -265,6 +293,7 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+             {/* </div> */}
              </div>
             {
                 showLogin && (

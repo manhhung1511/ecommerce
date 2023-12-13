@@ -103,6 +103,17 @@ const Dashboard = () => {
                       
                   </div>
               </div>
+              <div className={cx("history_order")}>
+                  <div className={cx("history_order-id")}>
+                      235423
+                      <p>05/12/2023</p>
+                  </div>
+                  <div className={cx("history_order-price")}>
+                      <p>250.000 đ</p>
+                      
+                  </div>
+              </div>
+             
               <div className={cx("history_order-all")}>
                 <Link to="/admin/order">
                     Xem tất cả đơn hàng  <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">

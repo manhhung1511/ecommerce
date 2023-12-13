@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter } from 'react-router-dom';
+import { ScrollRestoration, createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layouts/RootLayout';
 import HomePage from '../pages/HomePages';
 import Login from '../components/admin/Login';
@@ -106,8 +106,13 @@ function Router() {
 
     const router = createBrowserRouter([
         {
-            element: <RootLayout />,
-            children: routes
+            element: (
+                <>
+                  <ScrollRestoration />
+                  <RootLayout />
+                </>
+              ),
+              children: routes
         },
         {
             element: <AdminLayout/>,

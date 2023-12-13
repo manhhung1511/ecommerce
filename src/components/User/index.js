@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styles from "./User.module.scss";
 import classNames from "classnames/bind";
 import { Link } from 'react-router-dom';
+import EditInfor from "../EditInfor";
+import Overlay from "../Overlay";
+
 
 const cx = classNames.bind(styles);
 
@@ -10,6 +13,15 @@ const User = () => {
     const user = infor ? infor.username : "";
     const email = infor ? infor.email : "";
     const password = infor ? infor.password : "";
+    const [updateInfor, setUpdateInfor] = useState(false);
+
+    const handleUpdate = () => {
+        setUpdateInfor(true);
+    }
+
+    const handleClose = () => {
+        setUpdateInfor(false);
+      };
 
     return (
         <div className={cx("user")}>
@@ -35,18 +47,18 @@ const User = () => {
                         <div className={cx("col-sm-6")}>
                             <div className={cx("user_address-infor")}>
                                 <h4>{user}</h4>
-                                <p>0963121582</p>
-                                <p>6 Dinh Cong, Thanh Xuan, Ha Noi</p>
+                                <p>{infor.number}</p>
+                                <p>{infor.address_detail} ,{infor.district} ,{infor.province}</p>
                                 <button type="button">Nhà ở</button>
                                 <button type="button">Địa chỉ mặc định</button>
                                 <div className={cx("user_address-edit")}>
                                     <button type="button">Xóa</button>
-                                    <button type="button">Chỉnh sửa</button>
+                                    <button type="button" onClick={handleUpdate}>Chỉnh sửa</button>
                                 </div>
                             </div>
                         </div>
                         <div className={cx("col-sm-6")}>
-                            <div className={cx("user_address-infor")}>
+                            {/* <div className={cx("user_address-infor")}>
                                 <h4>{user}</h4>
                                 <p>0963121582</p>
                                 <p>6 Dinh Cong, Thanh Xuan, Ha Noi</p>
@@ -55,11 +67,20 @@ const User = () => {
                                     <button type="button">Xóa</button>
                                     <button type="button">Chỉnh sửa</button>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>  
                 </div>
             </div>
+
+            {
+                updateInfor && (
+                    <Overlay>
+                        <EditInfor onClose={handleClose}/>
+                    </Overlay>
+                )
+            }
+
         </div>
     );
 }

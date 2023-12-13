@@ -7,8 +7,14 @@ import products from "../../../data/product.json";
 
 const cx = classNames.bind(styles);
 
-const Cart = ({onClose, itemId}) => {
+const Cart = ({onClose, itemId, number, size, color}) => {
+   
     const product = products.filter((item) => item.id == itemId)
+
+    const addDot = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      };
+
     return (
         <div className={cx("cart")}>
             <div className={cx("cart_content")}>
@@ -24,12 +30,11 @@ const Cart = ({onClose, itemId}) => {
                         <h4>{product[0].name}</h4>
                          <div className={cx("cart_content-right-child")}>
                             <div className={cx("cart_content-right1")}>
-                                <button type="button">-</button>
-                                <button type="button">1</button>
-                                <button type="button">+</button>
+                                {/* <p>Màu sắc: {color}</p> */}
+                                <p>Kích cỡ: {size}</p>
                             </div>
                             <div className={cx("cart_content-right2")}>
-                                <p>{product[0].price} đ</p>
+                                <p>Số lượng: {number}</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +45,7 @@ const Cart = ({onClose, itemId}) => {
                         <p>Tạm tính</p>
                     </div>
                     <div className={cx("cart_content-bill2")}>
-                        <p>{product[0].price} đ</p>
+                        <p>{addDot(product[0].price * number)}.000đ</p>
                     </div>
                 </div>
                 <p className={cx("cart_content-desc")}>Thuế và phí vận chuyển sẽ được tính khi thanh toán</p>
@@ -49,15 +54,15 @@ const Cart = ({onClose, itemId}) => {
                     <Link to="/cart">
                         <button className={cx("cart_content-button1")} type="button">Xem giỏ hàng</button>
                     </Link>
-                    <Link to="/cart/buy">
+                    <Link to="/cart/buy" state={{...product[0], number1: number,color: color}}>
                         <button className={cx("cart_content-button2")} type="button">Mua ngay</button>
                     </Link>
                 </div>
             </div>
             <button className={cx("button_off")} onClick={onClose}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M4.16748 4.16663L15.8334 15.8325" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4.16676 15.8325L15.8326 4.16663" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.16748 4.16663L15.8334 15.8325" stroke="#334155" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4.16676 15.8325L15.8326 4.16663" stroke="#334155" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                  </svg>
             </button>
         </div>              

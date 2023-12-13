@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Products.module.scss";
 import classNames from "classnames/bind";
 import products from "../../data/product.json";
@@ -27,8 +27,14 @@ const Products = () => {
     (product) => product.category == category
   );
 
+  useEffect(() => {
+    const storedLikedProducts = JSON.parse(localStorage.getItem('likedProducts'));
+    setLikedProducts(storedLikedProducts);
+  },[])
+  
   const handleLike = (product) => {
-    if (!likedProducts.includes(product)) {
+    const check = likedProducts.some(obj => obj.id == product.id);
+    if (!check) {
       const updatedLikedProducts = [...likedProducts, product];
       setLikedProducts(updatedLikedProducts);
       // Update the localStorage with the new liked products
@@ -37,7 +43,7 @@ const Products = () => {
         JSON.stringify(updatedLikedProducts)
       );
     } else {
-      const newProduct = likedProducts.filter((item) => item !== product);
+      const newProduct = likedProducts.filter((item) => item.id !== product.id);
       setLikedProducts(newProduct);
       localStorage.setItem("likedProducts", JSON.stringify(newProduct));
     }
@@ -57,8 +63,8 @@ const Products = () => {
               fill="none"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M8.13693 6.40004C7.82675 6.71207 7.82675 7.21601 8.13693 7.52804L10.9689 10.4L8.13693 13.232C7.82675 13.5441 7.82675 14.048 8.13693 14.36C8.28714 14.5115 8.49162 14.5967 8.70493 14.5967C8.91824 14.5967 9.12272 14.5115 9.27293 14.36L12.6649 10.968C12.8164 10.8178 12.9016 10.6134 12.9016 10.4C12.9016 10.1867 12.8164 9.98225 12.6649 9.83204L9.27293 6.40004C9.12272 6.24859 8.91824 6.1634 8.70493 6.1634C8.49162 6.1634 8.28714 6.24859 8.13693 6.40004Z"
                 fill="#94A3B8"
               />
@@ -101,6 +107,7 @@ const Products = () => {
                       id="payment"
                       name="fav_language"
                       value="payment"
+                      onClick={() => handleCategory(2)}
                     />
                     <label for="payment">Áo In</label>
                   </div>
@@ -110,6 +117,7 @@ const Products = () => {
                       id="payment"
                       name="fav_language"
                       value="payment"
+                      onClick={() => handleCategory(3)}
                     />
                     <label for="payment">Quần Tây</label>
                   </div>
@@ -119,6 +127,7 @@ const Products = () => {
                       id="payment"
                       name="fav_language"
                       value="payment"
+                      onClick={() => handleCategory(4)}
                     />
                     <label for="payment">Áo khoác gió</label>
                   </div>
@@ -128,6 +137,7 @@ const Products = () => {
                       id="payment"
                       name="fav_language"
                       value="payment"
+                      onClick={() => handleCategory(5)}
                     />
                     <label for="payment">Áo nỉ</label>
                   </div>
@@ -137,6 +147,7 @@ const Products = () => {
                       id="payment"
                       name="fav_language"
                       value="payment"
+                      onClick={() => handleCategory(6)}
                     />
                     <label for="payment">Quần Jeans</label>
                   </div>
@@ -173,8 +184,8 @@ const Products = () => {
                       <path
                         d="M15 8.33325L10.5893 12.744C10.2638 13.0694 9.73618 13.0694 9.41074 12.744L5 8.33325"
                         stroke="#334155"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
                       />
                     </svg>
                   </button>
@@ -265,14 +276,14 @@ const Products = () => {
                                       "product_hot-item-content-price"
                                     )}
                                   >
-                                    {item.price}
-                                    <span>{item.price_sales}</span>
+                                    {item.price}đ
+                                    <span>{item.price_sales}đ</span>
                                   </p>
                                 </div>
                               </Link>
                               <div className={cx("product_hot-item-like")}>
                                 <button onClick={() => handleLike(item)}>
-                                  {likedProducts.includes(item) ? (
+                                  {(likedProducts && likedProducts.some(obj => obj.id == item.id)) ? (
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       width="20"
@@ -281,14 +292,14 @@ const Products = () => {
                                       fill="none"
                                     >
                                       <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
                                         d="M9.99486 4.93005C8.49535 3.18253 5.99481 2.71245 4.11602 4.31265C2.23723 5.91285 1.97273 8.58831 3.44815 10.4809C4.67486 12.0544 8.38733 15.3731 9.60407 16.4473C9.7402 16.5674 9.80827 16.6275 9.88766 16.6511C9.95695 16.6717 10.0328 16.6717 10.1021 16.6511C10.1815 16.6275 10.2495 16.5674 10.3857 16.4473C11.6024 15.3731 15.3149 12.0544 16.5416 10.4809C18.017 8.58831 17.7848 5.89602 15.8737 4.31265C13.9626 2.72929 11.4944 3.18253 9.99486 4.93005Z"
                                         fill="#FC4343"
                                         stroke="#FC4343"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
                                   ) : (
@@ -300,13 +311,13 @@ const Products = () => {
                                       fill="none"
                                     >
                                       <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
                                         d="M9.99486 4.93005C8.49535 3.18253 5.99481 2.71245 4.11602 4.31265C2.23723 5.91285 1.97273 8.58831 3.44815 10.4809C4.67486 12.0544 8.38733 15.3731 9.60407 16.4473C9.7402 16.5674 9.80827 16.6275 9.88766 16.6511C9.95695 16.6717 10.0328 16.6717 10.1021 16.6511C10.1815 16.6275 10.2495 16.5674 10.3857 16.4473C11.6024 15.3731 15.3149 12.0544 16.5416 10.4809C18.017 8.58831 17.7848 5.89602 15.8737 4.31265C13.9626 2.72929 11.4944 3.18253 9.99486 4.93005Z"
                                         stroke="#3C4242"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
                                   )}
@@ -399,14 +410,14 @@ const Products = () => {
                                       "product_hot-item-content-price"
                                     )}
                                   >
-                                    {item.price}
-                                    <span>{item.price_sales}</span>
+                                    {item.price}đ
+                                    <span>{item.price_sales}đ</span>
                                   </p>
                                 </div>
                               </Link>
                               <div className={cx("product_hot-item-like")}>
                                 <button onClick={() => handleLike(item)}>
-                                  {likedProducts.includes(item) ? (
+                                  {(likedProducts && likedProducts.some(obj => obj.id == item.id)) ? (
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       width="20"
@@ -415,14 +426,14 @@ const Products = () => {
                                       fill="none"
                                     >
                                       <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
                                         d="M9.99486 4.93005C8.49535 3.18253 5.99481 2.71245 4.11602 4.31265C2.23723 5.91285 1.97273 8.58831 3.44815 10.4809C4.67486 12.0544 8.38733 15.3731 9.60407 16.4473C9.7402 16.5674 9.80827 16.6275 9.88766 16.6511C9.95695 16.6717 10.0328 16.6717 10.1021 16.6511C10.1815 16.6275 10.2495 16.5674 10.3857 16.4473C11.6024 15.3731 15.3149 12.0544 16.5416 10.4809C18.017 8.58831 17.7848 5.89602 15.8737 4.31265C13.9626 2.72929 11.4944 3.18253 9.99486 4.93005Z"
                                         fill="#FC4343"
                                         stroke="#FC4343"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
                                   ) : (
@@ -434,13 +445,13 @@ const Products = () => {
                                       fill="none"
                                     >
                                       <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
                                         d="M9.99486 4.93005C8.49535 3.18253 5.99481 2.71245 4.11602 4.31265C2.23723 5.91285 1.97273 8.58831 3.44815 10.4809C4.67486 12.0544 8.38733 15.3731 9.60407 16.4473C9.7402 16.5674 9.80827 16.6275 9.88766 16.6511C9.95695 16.6717 10.0328 16.6717 10.1021 16.6511C10.1815 16.6275 10.2495 16.5674 10.3857 16.4473C11.6024 15.3731 15.3149 12.0544 16.5416 10.4809C18.017 8.58831 17.7848 5.89602 15.8737 4.31265C13.9626 2.72929 11.4944 3.18253 9.99486 4.93005Z"
                                         stroke="#3C4242"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
                                   )}

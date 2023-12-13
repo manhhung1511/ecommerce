@@ -48,7 +48,7 @@ const Login = () => {
       <img className={cx("login_img")} src="../images/loginadmin.png" alt="" />
       <div className={cx("login_content")}>
             <div className={cx("login_content-logo")}>  
-                <img src="https://scontent.fhan9-1.fna.fbcdn.net/v/t39.30808-6/406889673_782120340389046_3258230063403846076_n.jpg?stp=cp0_dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=3635dc&_nc_ohc=hjjHSKa9F4AAX_DeIlp&_nc_ht=scontent.fhan9-1.fna&oh=00_AfDxKKfhcCzZkGnyJ5pUfmtTcJzClyZJB4HqLPLmOPRXYQ&oe=656DFE5F" alt=""/>
+                <img src="https://i.postimg.cc/SKSbYFn0/Brand.png" alt=""/>
             </div>
             <div className={cx("login_content-title")}>  
                 <h3>Xin chào!</h3>

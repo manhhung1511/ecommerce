@@ -1,18 +1,51 @@
 [
     {
         "id": "547",
-        "name": "Áo thun trơn đen",
+        "name": "Áo thun trơn",
         "price": "300.000",
-        "img": "https://i.postimg.cc/F1X5pYz3/product1.png",
         "price_sales": "499.000",
         "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
-        "category": "1",
+        "category": "2",
         "number": 20,
-        "image1":"https://i.postimg.cc/j5RDgjwV/image-27.png",
-        "image2":"https://i.postimg.cc/j5RDgjwV/image-27.png",
-        "image3":"https://i.postimg.cc/j5RDgjwV/image-27.png",
-        "image4":"https://i.postimg.cc/j5RDgjwV/image-27.png",
-        "image5":"https://i.postimg.cc/DwCpyWh6/detail1.png"
+        "img": "https://i.postimg.cc/F1X5pYz3/product1.png",
+        "black": {
+            "image1":"https://i.postimg.cc/j5RDgjwV/image-27.png",
+            "image2":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-black-beauty-_4__3_jpg.webp",
+            "image3":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-black-beauty-_5__3_jpg.webp",
+            "image4":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-black-beauty-_2__3_jpg.webp",
+            "image5":"https://i.postimg.cc/DwCpyWh6/detail1.png",
+            "vi": "Đen"
+        },
+        "white": {
+            "img": "https://canifa.com/img/1000/1500/resize/8/t/8ts23a002-sa010-1.webp",
+            "image1":"https://canifa.com/img/1000/1500/resize/8/t/8ts23a002-sa010-xl-1.webp",
+            "image2":"https://canifa.com/img/1000/1500/resize/8/t/8ts23a002-sa010-xl-2.webp",
+            "image3":"https://canifa.com/img/1000/1500/resize/8/t/8ts23a002-sa010-3.webp",
+            "image4":"https://canifa.com/img/1000/1500/resize/8/t/8ts23a002-sa010-xl-1.webp",
+            "image5":"https://canifa.com/img/1000/1500/resize/8/t/8ts23a002-sa010-1.webp",
+            "vi": "Trắng"
+
+        },
+        "blue": {
+            "img": "https://canifa.com/img/1000/1500/resize/8/t/8ts22a001-sg461-1.webp",
+            "image1":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-tea-_2__3_jpg.webp",
+            "image2":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-tea-_6__3_jpg.webp",
+            "image3":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-tea-_5__3_jpg.webp",
+            "image4":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-tea-_4__3_jpg.webp",
+            "image5":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-tea-_1__3_jpg.webp",
+            "vi": "Xanh"
+        },
+        "red": {
+            "img": "https://canifa.com/img/1000/1500/resize/8/t/8ts22a001-sg461-1.webp",
+            "image1":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-emperador-_2__3_jpg.webp",
+            "image2":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-emperador-_4__3_jpg.webp",
+            "image3":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-emperador-_5__3_jpg.webp",
+            "image4":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-emperador-_6__3_jpg.webp",
+            "image5":"https://routine.vn/media/amasty/webp/catalog/product/cache/5b5632a96492396f42c72e22fdd64763/1/0/10s23tss072-emperador-_1__3_jpg.webp",
+            "vi": "Đỏ"
+        },
+        "size": "https://i.postimg.cc/Y96zz2xq/nh-ch-p-m-n-h-nh-2023-12-11-090846.png"
+       
     },
     {
         "id": "548",
@@ -21,33 +54,131 @@
         "img": "https://i.postimg.cc/gksNNwxp/product2.png",
         "price_sales": "499.000",
         "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
-        "category": "2",
+        "category": "6",
         "number": 40,
-        "image5":"https://i.postimg.cc/gksNNwxp/product2.png"
-
+        "black": {
+            "image1":"https://mcdn.coolmate.me/image/November2023/mceclip2_78.jpg",
+            "image2":"https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/November2023/23CMCW.JE003.1.jpg",
+            "image3":"https://mcdn.coolmate.me/image/November2023/mceclip0_10.jpg",
+            "image4":"https://mcdn.coolmate.me/image/November2023/mceclip3_24.jpg",
+            "image5":"https://i.postimg.cc/gksNNwxp/product2.png",
+            "vi": "Đen"
+        },
+        "size": "https://i.postimg.cc/SKdYVXMs/11101914.png"
     },
     {
-        "id": "549",
+        "id": "556",
         "name": "Quần bò lửng",
         "price": "500.000",
         "img": "https://i.postimg.cc/jjpXLPFH/product3.png",
         "price_sales": "499.000",
-        "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
-        "category": "1",
+        "description": "Áo bò lửng là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "6",
         "number": 30,
-        "image5":"https://i.postimg.cc/jjpXLPFH/product3.png"
-
+        "black": {
+            "image1":"https://canifa.com/img/212/284/resize/8/b/8bs23s013-sj777-2-thumb.webp",
+            "image2":"https://canifa.com/img/212/284/resize/8/b/8bs23s013-sj777-3.webp",
+            "image3":"https://canifa.com/img/212/284/resize/8/b/8bs23s013-sj777-4.webp",
+            "image4":"https://canifa.com/img/212/284/resize/8/b/8bs23s013-sj777-31-2.webp",
+            "image5":"https://i.postimg.cc/jjpXLPFH/product3.png",
+            "vi": "Đen"
+        },
+        "size": "https://i.postimg.cc/SKdYVXMs/11101914.png"
     },
     {
-        "id": "550",
-        "name": "Áo thun trơn đen",
+        "id": "555",
+        "name": "Áo thun trơn",
         "price": "350.000",
         "img": "https://i.postimg.cc/MTrz7Z1m/product4.png",
         "price_sales": "499.000",
         "description": "Áo thun thể thao là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
         "category": "2",
         "number": 60,
-        "image5":"https://i.postimg.cc/MTrz7Z1m/product4.png"
+        "black": {
+            "image1":"https://product.hstatic.net/1000360022/product/_ing0061_1992219c12934d0d8a40aa06335cdbe2.jpg",
+            "image2":"https://product.hstatic.net/1000360022/product/5_website_4fdbadb3fa8b47b28393d8fda408df3d.jpg",
+            "image3":"https://product.hstatic.net/1000360022/product/2_website_39ff5a4470b9498686a3b170d897a183.jpg",
+            "image4":"https://product.hstatic.net/1000360022/product/3_website_d941d76cef8742909a34c13d093f15f4.jpg",
+            "image5":"https://i.postimg.cc/MTrz7Z1m/product4.png",
+            "vi": "Nâu"
+        },
+        "size": "https://i.postimg.cc/Y96zz2xq/nh-ch-p-m-n-h-nh-2023-12-11-090846.png"
+    },
+    {
+        "id": "554",
+        "name": "Áo khoác gió",
+        "price": "450.000",
+        "img": "https://i.postimg.cc/wM5N9yxH/image2233.png",
+        "price_sales": "499.000",
+        "description": "Áo khoác gió là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "4",
+        "number": 60,
+        "black": {
+            "image1":"https://canifa.com/img/212/284/resize/8/o/8ot23w017-sb001-xl_1-u.webp",
+            "image2":"https://canifa.com/img/212/284/resize/8/o/8ot23w017-sb001-xl-2.webp",
+            "image3":"https://canifa.com/img/212/284/resize/8/o/8ot23w017-sb001-xl-5.webp",
+            "image4":"https://canifa.com/img/212/284/resize/8/o/8ot23w017-sb001-xl-3.webp",
+            "image5":"https://i.postimg.cc/wM5N9yxH/image2233.png",
+            "vi": "Cam"
+        },
+        "size": "https://i.postimg.cc/Y96zz2xq/nh-ch-p-m-n-h-nh-2023-12-11-090846.png"
+    },
+    {
+        "id": "553",
+        "name": "Áo Polo",
+        "price": "450.000",
+        "img": "https://i.postimg.cc/rs5HcJtm/image123.png",
+        "price_sales": "499.000",
+        "description": "Áo Polo là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "1",
+        "number": 60,
+        "black": {
+            "image1":"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422987/item/goods_03_422987.jpg?width=750",
+            "image2":"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422987/sub/goods_422987_sub22.jpg?width=750",
+            "image3":"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422987/sub/goods_422987_sub17.jpg?width=750",
+            "image4":"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422987/sub/goods_422987_sub18.jpg?width=750",
+            "image5":"https://i.postimg.cc/rs5HcJtm/image123.png",
+            "vi": "Xam"
+        },
+        "size": "https://i.postimg.cc/Y96zz2xq/nh-ch-p-m-n-h-nh-2023-12-11-090846.png"
+    },
+    {
+        "id": "552",
+        "name": "Áo Polo",
+        "price": "400.000",
+        "img": "https://i.postimg.cc/FsQqp22J/image243.png",
+        "price_sales": "499.000",
+        "description": "Áo Polo là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "1",
+        "number": 60,
+        "black": {
+            "image1":"https://canifa.com/img/1000/1500/resize/8/t/8tp23a002-sk010-3.webp",
+            "image2":"https://canifa.com/img/1000/1500/resize/8/t/8tp23a002-sk010-xl-1.webp",
+            "image3":"https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/459713/item/vngoods_03_459713.jpg?width=750",
+            "image4":"https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/459713/sub/vngoods_459713_sub23.jpg?width=750",
+            "image5":"https://i.postimg.cc/FsQqp22J/image243.png",
+            "vi": "Xam"
+        },
+        "size": "https://i.postimg.cc/Y96zz2xq/nh-ch-p-m-n-h-nh-2023-12-11-090846.png"
+    },
+    {
+        "id": "551",
+        "name": "Quần Kaki lửng",
+        "price": "450.000",
+        "img": "https://i.postimg.cc/0yk4R75k/image423.png",
+        "price_sales": "499.000",
+        "description": "Quần kaki là món đồ cổ điển vượt thời gian, có thể mặc lên hoặc xuống. Nó hoàn hảo cho một ngày đi chơi bình thường hoặc một dịp trang trọng hơn. Áo được làm từ 100% cotton, mềm mại và thoải mái khi mặc. Nó cũng có nhiều kích cỡ khác nhau, vì vậy bạn có thể tìm thấy kích cỡ phù hợp nhất với mình",
+        "category": "3",
+        "number": 60,
+        "black": {
+            "image1":"https://canifa.com/img/1000/1500/resize/8/b/8bs23s014-se331-31-1.webp",
+            "image2":"https://canifa.com/img/1000/1500/resize/8/b/8bs23s014-se331-31-2.webp",
+            "image3":"https://canifa.com/img/1000/1500/resize/8/b/8bs23s014-se331-31-4.webp",
+            "image4":"https://canifa.com/img/1000/1500/resize/8/b/8bs23s014-se331-2-thumb.webp",
+            "image5":"https://i.postimg.cc/0yk4R75k/image423.png",
+            "vi": "Xam"
+        },
+        "size": "https://i.postimg.cc/SKdYVXMs/11101914.png"
 
     }
 ]

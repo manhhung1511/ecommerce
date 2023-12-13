@@ -4,12 +4,25 @@ import classNames from "classnames/bind";
 import Footer from "../Footer";
 import Qrcode from "./Qrcode";
 import Overlay from "../Overlay";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 const Buy = () => {
 
+  const location = useLocation()
+  const buyNow = location.state;
+
+  const [formData, setFormData] = useState({
+    username: '',
+    email:'',
+    number: '',
+    province:'',
+    district:'',
+    address_detail:''
+  });
+
+  const [errors, setErrors] = useState({});
   const [cart, setToCart] = useState([]);
   const [infor, setInfor] = useState({
     name: '',
@@ -23,6 +36,7 @@ const Buy = () => {
   const [selectedValue, setSelectedValue] = useState('');
 
   const handleRadioChange = (event) => {
+    setErrors({...errors, ["selectedValue"]: ""})
     setSelectedValue(event.target.value);
   };
 
@@ -30,25 +44,77 @@ const Buy = () => {
     const storedProducts = JSON.parse(localStorage.getItem('addProducts'));
     setToCart(storedProducts);
 
-    const inforUser = JSON.parse(localStorage.getItem('infor'));
+    const inforUser = JSON.parse(localStorage.getItem('user'));
     setInfor(inforUser);
   },[])
+
+  const addDot = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
 
   let sum = 0;
   if(cart && cart.length > 0) {
     cart.forEach((item) => {
-      const number = parseInt(item.price, 10);
+      const number = parseInt(item.price*item.number1, 10);
       sum += number;
     });
   }
 
+  const validateForm = () => {
+    let newErrors = {};
+    const phoneNumberPattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+    if (!(infor && infor.username) && formData.username.trim() === '') {
+      newErrors.username = 'Tên không được để trống';
+    }
+    if (!(infor && infor.email) && formData.email.trim() === '') {
+      newErrors.email = 'Email không được để trống';
+    }
+    if(selectedValue.trim() === '') {
+      newErrors.selectedValue = 'Vui lòng chọn hình thức thanh toán';
+    }
+    if(!(infor && infor.username) && formData.number.trim() === '') {
+      newErrors.number = 'Số điện thoại không được để trống';
+    }
+    if(!(infor && infor.name) &&(formData.number.trim() !== '') && (!phoneNumberPattern.test(formData.number))) {
+      newErrors.number = 'Vui lòng nhập đúng số điện thoại';
+    }
+    if(!(infor && infor.province) && formData.province.trim() === '') {
+      newErrors.province = 'Không được để trống trường này';
+    }
+    if(!(infor && infor.district) && formData.district.trim() === '') {
+      newErrors.district = 'Không được để trống trường này';
+    }
+    if(!(infor && infor.address_detail) && formData.address_detail.trim() === '') {
+      newErrors.address_detail = 'Không được để trống  trường này';
+    }
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+};
+
+  const handleInputChange = (e) => {
+    setErrors({...errors, [e.target.name]: ""})
+    setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+    });
+};
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(selectedValue == 'payment') {
-        setShowQR(true);
-    } else {
-      navigate('/success')
+    if(validateForm()) {
+      if(selectedValue == 'payment') {
+          setShowQR(true);
+      } else {
+        navigate('/success',{
+          state: buyNow
+        })
+      }
     }
+  }
+
+  const handleClose = () => {
+    setShowQR(false);
   }
 
   return (
@@ -65,8 +131,8 @@ const Buy = () => {
               fill="none"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M8.13693 6.40004C7.82675 6.71207 7.82675 7.21601 8.13693 7.52804L10.9689 10.4L8.13693 13.232C7.82675 13.5441 7.82675 14.048 8.13693 14.36C8.28714 14.5115 8.49162 14.5967 8.70493 14.5967C8.91824 14.5967 9.12272 14.5115 9.27293 14.36L12.6649 10.968C12.8164 10.8178 12.9016 10.6134 12.9016 10.4C12.9016 10.1867 12.8164 9.98225 12.6649 9.83204L9.27293 6.40004C9.12272 6.24859 8.91824 6.1634 8.70493 6.1634C8.49162 6.1634 8.28714 6.24859 8.13693 6.40004Z"
                 fill="#94A3B8"
               />
@@ -93,8 +159,11 @@ const Buy = () => {
                                         type="text" 
                                         placeholder="Họ và tên"
                                         name="username"
-                                        value={infor && infor.name}
+                                        defaultValue={infor && infor.username}
+                                        onChange={handleInputChange}
                                         />  
+                             {errors.username && <div className="error_input">{errors.username}</div>}
+
                             </div>
                             <div className={cx("row")}>
                                  <div className={cx("col-sm-6")}>
@@ -104,7 +173,11 @@ const Buy = () => {
                                             type="email" 
                                             placeholder="Email"
                                             name="email"
+                                            onChange={handleInputChange}
+                                            defaultValue={infor.email}
                                         />  
+                             {errors.email && <div className="error_input">{errors.email}</div>}
+
                                         </div>
                                       
                                  </div>
@@ -116,7 +189,11 @@ const Buy = () => {
                                             placeholder="Số điện thoại"
                                             name="number"
                                             value={ infor && infor.number}
+                                            onChange={handleInputChange}
+                                          defaultValue={infor.number}
                                         />  
+                             {errors.number && <div className="error_input">{errors.number}</div>}
+
                                     </div>
                                  </div>
                             </div>
@@ -129,7 +206,11 @@ const Buy = () => {
                                         type="text" 
                                         placeholder="Tỉnh/TP"
                                         name="province"
+                                        onChange={handleInputChange}
+                                        defaultValue={infor.province}
                                     />  
+                             {errors.province && <div className="error_input">{errors.province}</div>}
+
                                     </div> 
                                  </div>
                                  <div className={cx("col-sm-6")}>
@@ -139,7 +220,11 @@ const Buy = () => {
                                             type="text" 
                                             placeholder="Quận/Huyện"
                                             name="district"
+                                            onChange={handleInputChange}
+                                            defaultValue={infor.district}
                                         />  
+                             {errors.district && <div className="error_input">{errors.district}</div>}
+
                                     </div>
                                  </div>
                             </div>
@@ -149,7 +234,11 @@ const Buy = () => {
                                         type="text" 
                                         placeholder="Địa chỉ cụ thể"
                                         name="address_detail"
+                                        onChange={handleInputChange}
+                                        defaultValue={infor.address_detail}
                                         />  
+                             {errors.address_detail && <div className="error_input">{errors.address_detail}</div>}
+
                             </div>
                             <h4 className={cx("buy_content-pay-title")}>
                                 Hình thức thanh toán
@@ -163,6 +252,7 @@ const Buy = () => {
                                     <input type="radio" id="payment" name="fav_language" value="payment" onChange={handleRadioChange}/>
                                     <label for="payment">Chuyển khoản liên ngân hàng bằng QR Code</label> 
                                 </div>
+                              {errors.selectedValue && <div className="error_input">{errors.selectedValue}</div>}
                             </div>
 
                             <button className={cx("buy_submit")}>Thanh toán - (đổi trả 30 ngày)</button>
@@ -177,30 +267,53 @@ const Buy = () => {
                         </h4>
                     </div>
                     {
-                      cart && cart.length > 0 ? (
+                      (cart && cart.length > 0 && buyNow == null) ? (
                         cart.map((item) => (
                           <div className={cx("summary_item")}>
                             <div className={cx("summary_item-product")}>
-                                <img src="./images/image25.png" alt=""/>
+                                <img style={{width: "80px"}} src={item[item.color].image5} alt=""/>
                                 <div className={cx("summary_item-infor")}>
-                                    <p>{item.name} x 1</p>
-                                    <p>Màu sắc : Đen</p>
-                                </div>
+                                    <p>{item.name} x {item.number1}</p>
+                                    <p>Màu sắc : {item[item.color].vi}</p>
+                                </div>  
                             </div>
                             <div className={cx("summary_item-price")}>
-                                {item.price}đ
+                                {addDot(item.price * item.number1)}.000đ
                             </div>
                           </div>
                         ))
                     
                       ) : (
-                        <div>
-                        </div>
+                        (buyNow !== null) && (
+                            <div className={cx("summary_item")}>
+                            <div className={cx("summary_item-product")}>
+                                <img style={{width: "60px"}} src={buyNow[buyNow.color].image5} alt=""/>
+                                <div className={cx("summary_item-infor")}>
+                                    <p>{buyNow.name}  x {buyNow.number1}  </p>
+                                    <p>Màu sắc : {buyNow[buyNow.color].vi}</p>
+                                </div>
+                            </div>
+                            <div className={cx("summary_item-price")}>
+                                {addDot(buyNow.price * buyNow.number1)}.000đ
+                            </div>
+                          </div>
+                          )
                       )
                     }
+                   
                     <div className={cx("summary_price")}>
                           <p>Tổng hàng </p>
-                          <p>{sum}.000đ</p>
+                          {
+                            (sum > 0 && buyNow == null) && (
+                              <p>{addDot(sum)}.000đ</p>
+                            ) 
+                          }
+                          {
+                            buyNow && (
+                              <p>{addDot(buyNow.price * buyNow.number1)}.000đ</p> 
+                            )
+                          }
+
                     </div>
                     <div className={cx("summary_price")}>
                           <p>Khuyến mãi</p>
@@ -208,11 +321,28 @@ const Buy = () => {
                     </div>
                     <div className={cx("summary_price")}>
                           <p>Vận chuyển</p>
-                          <p>-20.000đ</p>
+                          <p>+20.000đ</p>
                     </div>
                     <div className={cx("summary_price-bold")}>
                           <p>Tổng tiền</p>
-                          <p>{sum - 70.000}.000đ</p>
+                          {/* {
+                            sum > 0 ? (
+                              <p>{addDot(sum - 50 + 20)}.000đ</p>
+                            ) : (
+                              <p>{addDot(buyNow.price * buyNow.number1 - 50 + 20)}.000đ</p>
+                            )
+                          } */}
+                          {
+                            (sum > 0 && buyNow == null) && (
+                              <p>{addDot(sum - 50 + 20)}.000đ</p>
+                            ) 
+                          }
+                          {
+                            buyNow && (
+                              <p>{addDot(buyNow.price * buyNow.number1 - 50 + 20)}.000đ</p>
+                            )
+                          }
+
                     </div>
                   </div>
               </div>
@@ -223,7 +353,16 @@ const Buy = () => {
 
         {showQR && (
           <Overlay>
-              <Qrcode onData={`${sum - 70}.000 đ`} />
+            {
+              (sum > 0 && buyNow == null) && (
+                <Qrcode onData={addDot(sum - 50 + 20)+'.000đ'} onClose={handleClose} />
+               ) 
+            }
+            {
+              buyNow && (
+                <Qrcode onData={addDot(buyNow.price * buyNow.number1 - 50 + 20)+'.000đ'} onClose={handleClose} />
+               ) 
+            }
           </Overlay>
         )}
       </div>

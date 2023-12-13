@@ -6,7 +6,7 @@ const DefaultLayout =
   ({ ...props }) => {
     return (
       <>
-        <div style={{ flex: 1, overflow: "hidden"}} className="wrapper">
+        <div style={{ flex: 1}} className="wrapper">
             <Header />
             <div style={{
                 

@@ -23,7 +23,7 @@ const DetailOrder = () => {
                <button className={cx("detail_printf")}>
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M14.1667 14.1667H15.8333C16.7538 14.1667 17.5 13.4205 17.5 12.5V9.16667C17.5 8.24619 16.7538 7.5 15.8333 7.5H4.16667C3.24619 7.5 2.5 8.24619 2.5 9.16667V12.5C2.5 13.4205 3.24619 14.1667 4.16667 14.1667H5.83333M7.5 17.5H12.5C13.4205 17.5 14.1667 16.7538 14.1667 15.8333V12.5C14.1667 11.5795 13.4205 10.8333 12.5 10.8333H7.5C6.57953 10.8333 5.83333 11.5795 5.83333 12.5V15.8333C5.83333 16.7538 6.57953 17.5 7.5 17.5ZM14.1667 7.5V4.16667C14.1667 3.24619 13.4205 2.5 12.5 2.5H7.5C6.57953 2.5 5.83333 3.24619 5.83333 4.16667V7.5H14.1667Z" stroke="#081C66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.1667 14.1667H15.8333C16.7538 14.1667 17.5 13.4205 17.5 12.5V9.16667C17.5 8.24619 16.7538 7.5 15.8333 7.5H4.16667C3.24619 7.5 2.5 8.24619 2.5 9.16667V12.5C2.5 13.4205 3.24619 14.1667 4.16667 14.1667H5.83333M7.5 17.5H12.5C13.4205 17.5 14.1667 16.7538 14.1667 15.8333V12.5C14.1667 11.5795 13.4205 10.8333 12.5 10.8333H7.5C6.57953 10.8333 5.83333 11.5795 5.83333 12.5V15.8333C5.83333 16.7538 6.57953 17.5 7.5 17.5ZM14.1667 7.5V4.16667C14.1667 3.24619 13.4205 2.5 12.5 2.5H7.5C6.57953 2.5 5.83333 3.24619 5.83333 4.16667V7.5H14.1667Z" stroke="#081C66" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                     </span>
                     <span>In</span>
@@ -32,8 +32,8 @@ const DetailOrder = () => {
                <button className={cx("detail_review")}>
                     <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M12.4983 9.99996C12.4983 11.3807 11.379 12.5 9.99833 12.5C8.61762 12.5 7.49833 11.3807 7.49833 9.99996C7.49833 8.61925 8.61762 7.49996 9.99833 7.49996C11.379 7.49996 12.4983 8.61925 12.4983 9.99996Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M2.04688 9.99993C3.10877 6.61902 6.26734 4.16663 9.9987 4.16663C13.7301 4.16663 16.8887 6.61905 17.9505 9.99999C16.8886 13.3809 13.7301 15.8333 9.99872 15.8333C6.26734 15.8333 3.10875 13.3809 2.04688 9.99993Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12.4983 9.99996C12.4983 11.3807 11.379 12.5 9.99833 12.5C8.61762 12.5 7.49833 11.3807 7.49833 9.99996C7.49833 8.61925 8.61762 7.49996 9.99833 7.49996C11.379 7.49996 12.4983 8.61925 12.4983 9.99996Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M2.04688 9.99993C3.10877 6.61902 6.26734 4.16663 9.9987 4.16663C13.7301 4.16663 16.8887 6.61905 17.9505 9.99999C16.8886 13.3809 13.7301 15.8333 9.99872 15.8333C6.26734 15.8333 3.10875 13.3809 2.04688 9.99993Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
                     </span>
                     <span>Xem trước</span>
@@ -46,7 +46,7 @@ const DetailOrder = () => {
                 <div className={cx("col-sm-8")}>
                   <div className={cx("detail_order")}>
                       <div className={cx("detail_order-left")}>
-                          <img src={order.img} alt=""/>
+                          <img style={{width: "100px"}} src={order.img} alt=""/>
                           <div className={cx("detail_order-name")}>
                               <h4>{order.product}</h4>
                               <p>{order.product1}</p>
@@ -88,7 +88,7 @@ const DetailOrder = () => {
                               </div>
                             <button>
                               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                <path d="M9.05469 5L13.5706 9.41074C13.9038 9.73618 13.9038 10.2638 13.5706 10.5893L9.05469 15" stroke="#3C4242" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M9.05469 5L13.5706 9.41074C13.9038 9.73618 13.9038 10.2638 13.5706 10.5893L9.05469 15" stroke="#3C4242" strokeWidth="1.5" strokeLinecap="round"/>
                               </svg>
                             </button>
                           </div>

@@ -24,7 +24,7 @@ const Banner2 = () => {
                         </p>
                         <p className={cx("banner2_item-arrow")}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                <path d="M18 7.5L18 27M27 19.5L19.0607 27.4393C18.4749 28.0251 17.5251 28.0251 16.9393 27.4393L9 19.5" stroke="#3C4242" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M18 7.5L18 27M27 19.5L19.0607 27.4393C18.4749 28.0251 17.5251 28.0251 16.9393 27.4393L9 19.5" stroke="#3C4242" strokeWidth="1.5" strokeLinecap="round"/>
                             </svg>
                         </p>
                         <button className={cx("banner2_item-buy")}>
@@ -47,7 +47,7 @@ const Banner2 = () => {
                         </p>
                         <p className={cx("banner2_item-arrow")}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                <path d="M18 7.5L18 27M27 19.5L19.0607 27.4393C18.4749 28.0251 17.5251 28.0251 16.9393 27.4393L9 19.5" stroke="#3C4242" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M18 7.5L18 27M27 19.5L19.0607 27.4393C18.4749 28.0251 17.5251 28.0251 16.9393 27.4393L9 19.5" stroke="#3C4242" strokeWidth="1.5" strokeLinecap="round"/>
                             </svg>
                         </p>
                         <button className={cx("banner2_item-buy")}>

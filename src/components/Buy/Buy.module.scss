@@ -171,6 +171,7 @@ input[type="checkbox"] {
         justify-content: space-between;
         padding: 10px;
         border-bottom: 1px solid var(--text-color4);
+        align-items: center;
         &-infor {
             color: var(--text-color7);
             font-size: 14px;
@@ -189,6 +190,7 @@ input[type="checkbox"] {
         }
         &-product {
             display: flex;
+            align-items: center;
         }
 
         &-price {
