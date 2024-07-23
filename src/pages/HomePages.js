@@ -9,27 +9,9 @@ import ProductNew from "../components/ProductNew";
 import FeedBack from "../components/FeedBack";
 import News from "../components/News";
 import Footer from "../components/Footer";
-import styles from "./HomePage.module.scss";
-import classNames from "classnames/bind";
-
-const cx = classNames.bind(styles);
 
 const HomePage = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  return isLoading ? (
-    <div className={cx("loading-container")}>
-      <div className={cx("spinner")}></div>
-    </div>
-  ) : (
+  return (
     <>
       <div className="hero-banner">
         <Banner />
@@ -48,6 +30,6 @@ const HomePage = () => {
       <News />
       <Footer />
     </>
-  );
+  )
 };
 export default HomePage;
