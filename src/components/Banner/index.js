@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const Banner = () => {
     return (
         <div className={cx("banner")}>
-            <img alt="" src="./images/hero-banner.png" className={cx("banner_img")}/>
+            <img alt="" src="https://i.postimg.cc/Vsqt9tpZ/hero-banner.png" className={cx("banner_img")}/>
             <div className={cx("banner_content")}>
                 {/* <h2 className={cx("banner_content-title")}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="2" viewBox="0 0 24 2" fill="none">
